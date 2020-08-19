@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import Form from './Form';
+import Form from './Form';
 import User from './User';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -109,7 +109,8 @@ const submit = () => {
     email: formValues.email.trim(),
     password: formValues.password.trim(),
     role: formValues.role,
-    terms: Object.keys(formValues.terms).filter(term => formValues.terms[term]),
+    terms: Object.keys(formValues.terms),
+    id: Math.floor(Math.random() * 100000),
   }
   postNewUser(newUser)
 }
@@ -126,7 +127,6 @@ const submit = () => {
   useEffect(() => {
     formSchema.isValid(formValues)
     .then(valid => {
-      debugger
       setDisabled(!valid);
     })
   }, [formValues])
@@ -134,12 +134,27 @@ const submit = () => {
   return (
     <div className="App">
       <header className="App-header">
-       <h1>OnBoarding App</h1>
-       {/* <Form 
-       
-       
-       /> */}
+        <h1>OnBoarding App</h1>
       </header>
+       
+       <Form 
+        values={formValues}
+        inputChange={inputChange}
+        checkboxChange={checkboxChange}
+        submit={submit}
+        disabled={disabled}
+        errors={formErrors}
+       />
+      {/* this is creating the individual user in the user component, map thru users array and for each user, create inside the user component, an individual user object*/}
+      {
+        users.map(user => {
+          return (
+            <User key={user.id} details={user} />
+          )
+        })
+      }
+
+    
     </div>
   );
 }

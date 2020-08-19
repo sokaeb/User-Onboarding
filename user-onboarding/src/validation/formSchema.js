@@ -2,11 +2,11 @@ import * as yup from 'yup'
 
 
 const formSchema = yup.object().shape({
-    firstname: yup
+    first_name: yup
     .string()
     .min(3, 'First Name must be at least 3 characters long.')
     .required('First Name is Required'),
-    lastname: yup
+    last_name: yup
     .string()
     .min(3, 'Last Name must be at least 3 characters long.')
     .required('Last Name is Required'),
@@ -22,9 +22,9 @@ const formSchema = yup.object().shape({
       .string()
       .oneOf(['student', 'instructor', 'team lead'], 'You must select a role.')
       .required('You must select a role'),
-    terms: yup
-        .boolean()
-        .oneOf([true], 'You must agree to Terms of Service to continue.')
+    // terms: yup
+    //     .boolean()
+    //     .oneOf([true], 'You must agree to Terms of Service to continue.')
         // .required('You must agree to Terms of Service to continue.')
   });
 
