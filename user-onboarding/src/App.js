@@ -50,10 +50,6 @@ const getUsers = () => {
       console.log(err.response)
     })
 }
-  // WHAT DOES THIS DO
-useEffect(() => {
-  getUsers()
-}, [])
 
 const postNewUser = newUser => {
   axios.post('https://reqres.in/api/users', newUser)
@@ -118,7 +114,22 @@ const submit = () => {
   postNewUser(newUser)
 }
 
+  // ADD DESCRIPTION
+  useEffect(() => {
+    getUsers()
+  }, [])
 
+  // This sets the disabled state
+  // the submit button initial state is disabled. this checks if formValues matches the schema. If so, it returns true. 
+  // .then, it will set the disabled state to the opposite of valid (which per debugger, is false). 
+  // So, it'll set disabled to true(!false). Thereby, making the Submit button able
+  useEffect(() => {
+    formSchema.isValid(formValues)
+    .then(valid => {
+      debugger
+      setDisabled(!valid);
+    })
+  }, [formValues])
 
   return (
     <div className="App">
