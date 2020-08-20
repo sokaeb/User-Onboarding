@@ -12,27 +12,27 @@ import React from 'react';
      } = props
 
 
-    // .preventDefault prevents the page from reloading. submit() is carrying out the function from App
+    // .preventDefault prevents the form from reloading. submit() is carrying out the function from App
     const onSubmit = evt => {
         evt.preventDefault()
         submit()
     }
 
+    // this func will be looking at the checked attribute
     const onCheckboxChange = evt => {
         const { name, checked } = evt.target
-        checkboxChange( name, checked )
+        checkboxChange( name, checked)
     }
 
     const onInputChange = evt => {
         const { name, value } = evt.target
         inputChange(name, value)
     }
-     
+
     return (
         <form className='form container' onSubmit={onSubmit}>
             <div className='form submit'>
                 <h2>Add a User</h2>
-                    {/* ??? IS IT NECESSARY TO RENDER VALIDATIONS BEFORE THE INPUTS??? */}
                 <div className='errors'>
                     <div>{errors.first_name}</div>
                     <div>{errors.last_name}</div>
@@ -42,8 +42,9 @@ import React from 'react';
                 </div>
             </div>
 
-            <div className='form inputs'></div>
+            <div className='form inputs'>
                 <h4>New User Information</h4>
+
                 <label>First Name&nbsp;
                     <input 
                         value={values.first_name}
@@ -87,20 +88,23 @@ import React from 'react';
                         name='role'
                     >
                         <option value=''>-- Select a Role --</option>
-                        <option value='student'>Student</option>
-                        <option value='instructor'>Instructor</option>
-                        <option value='team lead'>Team Lead</option>
+                        <option value='Student'>Student</option>
+                        <option value='Instructor'>Instructor</option>
+                        <option value='Team Lead'>Team Lead</option>
                     </select>
                 </label>
-
+            </div> 
+            
+            <div className='form checkbox'>
                 <label>Do you accept the Terms of Service?&nbsp;
                     <input 
-                        checked={values.terms}
+                        checked={values.terms.accept}
                         onChange={onCheckboxChange}
                         name='terms'
                         type='checkbox'
                     />
                 </label>
+            </div>
             <button disabled={disabled}>SUBMIT</button>
         </form>
     )

@@ -20,12 +20,8 @@ const formSchema = yup.object().shape({
         .required('Password is Required.'),
     role: yup
       .string()
-      .oneOf(['student', 'instructor', 'team lead'], 'You must select a role.')
+      .oneOf(['Student', 'Instructor', 'Team Lead'], 'You must select a role.')
       .required('You must select a role'),
-    // terms: yup
-    //     .boolean()
-    //     .oneOf([true], 'You must agree to Terms of Service to continue.')
-        // .required('You must agree to Terms of Service to continue.')
   });
 
   export default formSchema
