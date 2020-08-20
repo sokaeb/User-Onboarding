@@ -68,7 +68,7 @@ import React from 'react';
                         value={values.email}
                         onChange={onInputChange}
                         name='email'
-                        type='emailtext'
+                        type='text'
                     />
                 </label>
 
