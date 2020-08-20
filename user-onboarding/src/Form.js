@@ -68,7 +68,7 @@ import React from 'react';
                         value={values.email}
                         onChange={onInputChange}
                         name='email'
-                        type='text'
+                        type='emailtext'
                     />
                 </label>
 
@@ -105,7 +105,7 @@ import React from 'react';
                     />
                 </label>
             </div>
-            <button disabled={disabled}>SUBMIT</button>
+            <button id='submitBtn' disabled={disabled}>SUBMIT</button>
         </form>
     )
 }
